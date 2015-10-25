@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hello World!</title>
+</head>
+
+<body>
+  <h1>Hello World!</h1> We are using node.js
+  <script>
+    document.write(process.version);
+  </script>
+  and electron
+  <script>
+    document.write(process.versions['electron']);
+  </script>.
+
+  <div id="image-placeholder"></div>
+
+  <script src="ipc.js"></script>
+
+  <form>
+    First name:
+    <br>
+    <input type="text" name="firstname">
+    <br> Last name:
+    <br>
+    <input type="text" name="lastname">
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "chimp",
+  "version": "0.0.0",
+  "main": "main.js",
+  "devDependencies": {
+    "coffee-script": "^1.10.0",
+    "electron-prebuilt": "^0.30.0",
+    "node-watch": "^0.3.4"
+  }
+}
