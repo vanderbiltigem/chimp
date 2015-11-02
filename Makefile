@@ -27,4 +27,3 @@ $(DEPS):
 
 run: all $(ELECTRON)
 	$(ELECTRON) .
-	node watch.js
