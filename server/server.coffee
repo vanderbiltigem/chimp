@@ -1,8 +1,8 @@
 fs = require 'fs'
 http = require 'http'
-static = require 'node-static'
+StaticServer = require 'node-static'
 
-fileServer = new static.Server()
+fileServer = new StaticServer.Server()
 
 portNum = 8080
 

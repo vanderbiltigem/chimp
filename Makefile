@@ -7,7 +7,8 @@ ELECTRON := $(NPM_BIN)/electron
 
 DEPS := $(COFFEE_CC) $(ELECTRON)
 
-IN := $(wildcard *.coffee)
+COFFEE_SRC := . server
+IN := $(wildcard $(addsuffix /*.coffee, $(COFFEE_SRC)))
 OUT := $(patsubst %.coffee,%.js,$(IN))
 
 all: $(OUT)
