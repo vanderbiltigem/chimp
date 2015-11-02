@@ -2,31 +2,74 @@
 <html>
 
 <head>
-  <title>Hello World!</title>
+  <title>chimp</title>
+  <link rel="stylesheet" type="text/css" href="css/pretty.css">
+  <script type="text/javascript" src="js/sylvester.js"></script>
+  <script type="text/javascript" src="js/glUtils.js"></script>
+  <script type="text/javascript" src="js/graphics.js"></script>
+
+  <!-- fragment shader program -->
+  <script id="shader-fs" type="x-shader/x-fragment">
+	varying vec4 v_color;
+    void main() {
+		gl_FragColor = v_color;
+	}
+  </script>
+
+  <!-- vertex shader program -->
+  <script id="shader-vs" type="x-shader/x-vertex">
+	attribute vec4 a_position;
+    attribute vec4 a_color;
+	uniform mat4 u_matrix;
+	varying vec4 v_color;
+
+    void main() {
+		gl_Position = u_matrix * a_position;
+		v_color = a_color;
+	}
+  </script>
+
 </head>
 
-<body>
-  <h1>Hello World!</h1> We are using node.js
+<body onload="start()">
+	<!--
+  node.js
   <script>
     document.write(process.version);
   </script>
-  and electron
+  <br>
+  electron
   <script>
     document.write(process.versions['electron']);
-  </script>.
+  </script>
+  <br>
+  -->
+  <p id="tmp">orig</p>
 
-  <div id="image-placeholder"></div>
+  <div class="container">
+    <canvas id="dna_view">
+	  Your browser doesn't seem to support the
+	  <code>&lt;canvas&gt;</code> element.
+    </canvas>
+    <div id="overlay">
+		<div>Time:  <span id="time"></span></div>
+		<div>Angle: <span id="angle"></span></div>
+	</div>
+  </div>
+  <textarea id="text_view"
+	 		oninput="textEdit(this.value)"
+			value=""
+			class="boxsizingBorder"></textarea>
 
-  <script src="ipc.js"></script>
+  <!-- <script src="ipc.js"></script>-->
 
-  <form>
-    First name:
-    <br>
-    <input type="text" name="firstname">
-    <br> Last name:
-    <br>
-    <input type="text" name="lastname">
-  </form>
+  <script>
+	function textEdit(text) {
+		// need to reflect changes in the text area in the canvas
+		document.getElementById("tmp").innerHTML = text;
+	}
+  </script>
+
 </body>
 
 </html>
