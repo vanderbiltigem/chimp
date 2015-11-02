@@ -4,15 +4,6 @@ var mvMatrix;
 var vertexPositionAttribute;
 var perspectiveMatrix;
 
-var timeElement  = document.getElementById("time");
-var angleElement = document.getElementById("angle");
-
-var timeNode  = document.createTextNode("");
-var angleNode = document.createTextNode("");
-
-timeElement.appendChild(timeNode);
-angleElement.appendChild(angleNode);
-
 function start() {
 	/*
 	// get all the canvas elements
@@ -39,12 +30,12 @@ function start() {
 			var shaderProgram = initShaders(gl);
 
 			var positionLocation =
-				gl.getAttribLocation(program, "a_position");
+				gl.getAttribLocation(shaderProgram, "a_position");
 			var colorLocation =
-				gl.getAttribLocation(program, "a_color);
+				gl.getAttribLocation(shaderProgram, "a_color);
 
 			var matrixLocation =
-				gl.getUniformLocation(program, "u_matrix");
+				gl.getUniformLocation(shaderProgram, "u_matrix");
 			setInterval(
 					drawScene(canvas,
 						gl,
