@@ -5,8 +5,7 @@ Server = require './server/server'
 
 mainWindow = null
 
-app.on 'window-all-closed', ->
-  app.quit()
+app.on 'window-all-closed', -> app.quit()
 
 Server.startServer ->
   app.on 'ready', ->

@@ -26,4 +26,4 @@ $(DEPS):
 	npm install
 
 run: all $(ELECTRON)
-	$(ELECTRON) .
+	$(ELECTRON) . --disable-http-cache
