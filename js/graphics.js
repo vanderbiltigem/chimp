@@ -28,7 +28,7 @@ function start() {
     gl.depthFunc(gl.LEQUAL);
 
     var shaderProgram = initShaders(gl);
-	var squareVerticesBuffer = initBuffers(gl); 
+    var squareVerticesBuffer = initBuffers(gl);
 
     var positionLocation =
       gl.getAttribLocation(shaderProgram, "a_position");
@@ -51,7 +51,7 @@ function start() {
 }
 
 function initWebGL(canvas) {
-  gl = null;
+  var gl = null;
   try {
     gl = canvas.getContext("webgl") ||
       canvas.getContext("experimental-webgl");
