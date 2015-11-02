@@ -7,10 +7,10 @@ mainWindow = null
 
 app.on 'window-all-closed', -> app.quit()
 
-Server.startServer ->
+Server.startServer (port) ->
   app.on 'ready', ->
     mainWindow = new BrowserWindow {}
     mainWindow.on 'maximize', ->
-      mainWindow.loadUrl "http://localhost:#{Server.portNum}/index.html"
+      mainWindow.loadUrl "http://localhost:#{port}/index.html"
     mainWindow.maximize()
     mainWindow.on 'closed', -> mainWindow = null

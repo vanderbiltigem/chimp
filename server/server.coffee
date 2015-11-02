@@ -4,11 +4,10 @@ StaticServer = require 'node-static'
 
 fileServer = new StaticServer.Server()
 
-portNum = 8080
-
 startServer = (cb) ->
   http.createServer((req, res) ->
     (req.addListener 'end', -> fileServer.serve req, res).resume())
-    .listen portNum, cb
+    # 0 listens on random port
+    .listen 0, -> cb @address().port
 
-module.exports = {startServer, portNum}
+module.exports = {startServer}
