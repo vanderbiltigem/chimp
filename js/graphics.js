@@ -27,22 +27,22 @@ function start() {
 			gl.enable(gl.DEPTH_TEST);
 			gl.depthFunc(gl.LEQUAL);
 			
-			var shaderProgram = initShaders(gl);
+			var shaderProgram        = initShaders(gl);
+			var squareVerticesBuffer = initBuffers(gl); 
 
 			var positionLocation =
 				gl.getAttribLocation(shaderProgram, "a_position");
 			var colorLocation =
 				gl.getAttribLocation(shaderProgram, "a_color");
-
 			var matrixLocation =
 				gl.getUniformLocation(shaderProgram, "u_matrix");
-			setInterval(
-					drawScene(canvas,
-						gl,
-						squareVerticesBuffer,
-						vertexPositionAttribute,
-						shaderProgram),
-					5);
+
+			setInterval(drawScene(canvas,
+								  gl,
+								  squareVerticesBuffer,
+								  vertexPositionAttribute,
+								  shaderProgram),
+						5);
 		} else {
 			alert("gl is null");
 		}
