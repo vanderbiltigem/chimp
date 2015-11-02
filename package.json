@@ -6,5 +6,8 @@
     "coffee-script": "^1.10.0",
     "electron-prebuilt": "^0.30.0",
     "node-watch": "^0.3.4"
+  },
+  "dependencies": {
+    "node-static": "^0.7.7"
   }
 }
