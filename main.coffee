@@ -18,3 +18,4 @@ app.on 'ready', ->
 
   mainWindow.on 'closed', =>
     mainWindow = null
+    process.exit 0
