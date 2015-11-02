@@ -1,21 +1,22 @@
 app = require 'app'
 BrowserWindow = require 'browser-window'
+ipc = require 'ipc'
+
+Server = require './server'
 
 mainWindow = null
 
 app.on 'window-all-closed', ->
   app.quit()
 
-app.on 'ready', ->
-  mainWindow = new BrowserWindow({width: 800, height: 600})
-  mainWindow.loadUrl "file://#{__dirname}/index.html"
+Server.startServer ->
+  app.on 'ready', ->
+    mainWindow = new BrowserWindow({width: 800, height: 600})
+    mainWindow.loadUrl "http://localhost:8080"
 
-  ipc = require 'ipc'
+    ipc.on 'msg', (ev, arg) =>
+      console.log arg
+      ev.sender.send 'reply', 'pong'
 
-  ipc.on 'msg', (ev, arg) =>
-    console.log arg
-    ev.sender.send 'reply', 'pong'
-
-  mainWindow.on 'closed', =>
-    mainWindow = null
-    process.exit 0
+    mainWindow.on 'closed', =>
+      mainWindow = null
