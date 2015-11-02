@@ -12,7 +12,7 @@ app.on 'window-all-closed', ->
 Server.startServer ->
   app.on 'ready', ->
     mainWindow = new BrowserWindow({width: 800, height: 600})
-    mainWindow.loadUrl "localhost:8080"
+    mainWindow.loadUrl "http://localhost:8080"
 
     ipc.on 'msg', (ev, arg) =>
       console.log arg
