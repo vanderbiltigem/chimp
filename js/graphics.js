@@ -32,7 +32,7 @@ function start() {
 			var positionLocation =
 				gl.getAttribLocation(shaderProgram, "a_position");
 			var colorLocation =
-				gl.getAttribLocation(shaderProgram, "a_color);
+				gl.getAttribLocation(shaderProgram, "a_color");
 
 			var matrixLocation =
 				gl.getUniformLocation(shaderProgram, "u_matrix");
@@ -151,7 +151,7 @@ function initBuffers(gl) {
 	return squareVerticesBuffer;
 }
 
-function drawScene(canvas, 
+function drawScene(canvas,
 		           gl,
 				   squareVerticesBuffer,
 				   vertexPositionAttribute,
@@ -170,7 +170,7 @@ function drawScene(canvas,
 						   gl.FLOAT,
 						   false,
 						   0,
-						   0); 
+						   0);
 	setMatrixUniforms(shaderProgram);
 	gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 }

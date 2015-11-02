@@ -1,6 +1,5 @@
 app = require 'app'
 BrowserWindow = require 'browser-window'
-ipc = require 'ipc'
 
 Server = require './server/server'
 
@@ -11,12 +10,8 @@ app.on 'window-all-closed', ->
 
 Server.startServer ->
   app.on 'ready', ->
-    mainWindow = new BrowserWindow({width: 800, height: 600})
-    mainWindow.loadUrl "http://localhost:#{Server.portNum}/index.html"
-
-    ipc.on 'msg', (ev, arg) =>
-      console.log arg
-      ev.sender.send 'reply', 'pong'
-
-    mainWindow.on 'closed', =>
-      mainWindow = null
+    mainWindow = new BrowserWindow {}
+    mainWindow.on 'maximize', ->
+      mainWindow.loadUrl "http://localhost:#{Server.portNum}/index.html"
+    mainWindow.maximize()
+    mainWindow.on 'closed', -> mainWindow = null
