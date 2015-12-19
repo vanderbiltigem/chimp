@@ -14,3 +14,7 @@ The [view](../core/view.coffee) is a method of representing the buffer as a user
 # to find out
 ## transducers
 do we want to have chains of buffer-like objects transforming buffers? or do we instead only have buffers, and methods that operate on them? could views just act upon something that wraps a buffer and extends its interface? not sure. sounds like a good idea though.
+
+One example of this might be a "reverse complement" transducer which accepts a `buffer-like` and returns a `buffer-like` such that retrieving buffer text from the transducer results in the text being reverse-complemented from the source `buffer-like` object, and modifying it results in the reverse complement of the modifications being written to the source buffer.
+
+If this is supported, this would likely require a more finer-grained `buffer-like` interface for performance reasons. Writing the entirety of a genome, then reverse complementing it on every save operation is pretty costly. Definitely would prefer an alternative operation.
