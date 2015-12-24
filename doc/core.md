@@ -20,7 +20,7 @@ Buffers should be some representation of genomic data. Stream of consciousness t
 
 - oh and also this representation should be able to be quickly queried for a given subset of the sequence
 
-- consider representations which only require as much space as is requested (+O (1) obv)
+- consider representations which only require as much space as is requested (+O(1) obv)
 
 - also maybe wanna be able to get aggregate stats by running through entire sequence quickly
 
@@ -28,20 +28,20 @@ Buffers should be some representation of genomic data. Stream of consciousness t
   - hard to see how that would work if the format doesn't have the sequence all together in memory
   - however, can have some idea about where sequence starts, where ends, any extraneous data in between, so we know exactly the file byte range to read
   - consider new format (binary?) which is faster to convert to desired representation
-      - ensure the format is robust to new bases
+    - ensure the format is robust to new bases
   - can be used for read-only buffers in a special ro mode if don't need write and offers greater speed in some way
   - insertions in the middle still kill mmap
 
 - consider some kind of lazy tree to implement lazy memory mapping while allowing insertions in the middle
   - hard to implement
   - can be faster than insert with an mmap?
-      - requires shifting the whole file over
+    - requires shifting the whole file over
   - difficult to see how this avoids shifting the whole file over upon insertions, unless an intermediate representation is used
   - maybe we can require our own intermediate representation (own file format) for saves and allow import-export with normal formats?
-      - this representation could be append-only, maybe, and then only do compaction when it gets super long
-      - this is absolutely terrible for sequential scans
-          - sequential scans are nice for just reading a sequence into memory, and also running many types of algorithms on them
-          - can be implemented by scanning original, then running over all indels, but that's pretty bad for caching compared to a for loop over an mmaped region
+    - this representation could be append-only, maybe, and then only do compaction when it gets super long
+    - this is absolutely terrible for sequential scans
+      - sequential scans are nice for just reading a sequence into memory, and also running many types of algorithms on them
+      - can be implemented by scanning original, then running over all indels, but that's pretty bad for caching compared to a for loop over an mmaped region
 
 - so big (competing) issues are:
 1. being able to run over the data in order, quickly
