@@ -1,0 +1,9 @@
+*
+out-bin
+out-indices
+!*.c
+!*.sh
+!*.h
+parse-indices.h
+!.gitignore
+!*.coffee
