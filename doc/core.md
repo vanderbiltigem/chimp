@@ -7,7 +7,7 @@ The core abstractions being used here is the "buffer" and the "view."
 The [Buffer](#Buffer) and [View](#View) base classes exist so that buffer types can be specialized for the specific data type (for example, allowing us to used different representations for genomic data and regular text). Specialization of these classes hopefully allows for greater efficiency when representing data such as genomic data, which may be especially large, and also highly structured.
 
 ## Buffer
-The [buffer](../core/buffer.coffee) maintains all of the information related to editing. This currently consists of a smart text string class and a collection of attributes. Buffers can be constructed from and written to files, strings, or other data types that are isomorphic to text data.
+The [buffer](../core/buffer.coffee) maintains all of the information related to editing. This currently consists of a smart text string class and a collection of attributes. Buffers can be constructed from and written to files, strings, or other data types that are isomorphic to genomic data.
 
 ## View
 The [view](../core/view.coffee) is a method of representing the buffer as a user interface element. Views contain a reference to a buffer or [buffer-like](#transducers) object, and present some interface to the user. Views may modify buffers in some specified way. The most obvious view is a rich text editor. Some less obvious ones include a reverse-complement text editor (which saves as a valid buffer, which is why it's so cool), and a webGL fun colorful 3D representation of a buffer.
@@ -44,10 +44,12 @@ Buffers should be some representation of genomic data. Stream of consciousness t
       - can be implemented by scanning original, then running over all indels, but that's pretty bad for caching compared to a for loop over an mmaped region
 
 - so big (competing) issues are:
-1. being able to run over the data in order, quickly
-2. being able to support arbitrary indels
-  - emacs has probably solved this already, as have other (fast) text editors (e.g. vim)
-      - although they mostly optimize for human editing (e.g. short lined-files) which we dgaf about
+    1. being able to run over the data in order, quickly
+    2. being able to support arbitrary indels
+    - emacs has probably solved this already, as have other (fast) text editors (e.g. vim)
+        - although they mostly optimize for human editing (e.g. short lined-files) which we dgaf about
+
+- look at [experiment/file-io-speed](https://github.com/vanderbiltigem/chimp/tree/experiment/file-io-speed) to see which types of io run most quickly over different types of input
 
 ## GeneticView
 
