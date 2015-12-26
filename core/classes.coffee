@@ -25,13 +25,14 @@ class Buffer
 Transducers =
   reverseComplement: ->
 
-# "basic" buffer class
+# "basic" buffer class, still abstract, hooks up to some physical file to
+# implement Buffer methods
 class File extends Buffer
 
 # implements required methods for File for plaintext files
 class TextFile extends File
 
-# includes tons of transduction mixins (reverse complement, etc)
+# includes transduction mixins (reverse complement, etc)
 class GeneticFile extends File
   Obj.mix @, Transducers
 

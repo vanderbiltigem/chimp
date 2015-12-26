@@ -6,6 +6,6 @@ mix = (klass, mixin) ->
   doMix klass.prototype, mixin
 
 module.exports = {
-  extend
+  doMix
   mix
 }
